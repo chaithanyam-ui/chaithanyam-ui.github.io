@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Driver Login - Vehicle Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Import fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Century+Gothic&family=Century+Schoolbook&display=swap');
+
+        /* Basic Styles */
+        body {
+            font-family: 'Century Gothic', sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 2s ease-out;
+        }
+        h2 {
+            font-family: 'Century Schoolbook', serif;
+            font-size: 2em;
+            color: #333;
+        }
+        label {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            font-size: 1em;
+            color: #555;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Driver Login</h2>
+        <form action="driver-dashboard.html" method="POST">
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" name="mobile" required placeholder="Enter your mobile number">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>Don't have an account? <a href="register.html">Sign up here</a>.</p>
+    </div>
+
+</body>
+</html>
