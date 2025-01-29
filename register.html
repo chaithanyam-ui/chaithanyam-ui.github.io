@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register - Vehicle Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Century Gothic', sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .register-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            animation: fadeIn 2s ease-out;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Centering the content */
+            align-items: center;
+        }
+
+        select, input, button {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin: 5px;
+            width: 100%; /* Ensure the inputs take full width */
+            max-width: 400px; /* Optional: Restrict max width of inputs */
+            box-sizing: border-box; /* Ensures padding doesn't increase the size */
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .otp-button {
+            background-color: #28a745;
+        }
+
+        .otp-button:hover {
+            background-color: #218838;
+        }
+
+        .register-container button[type="submit"] {
+            width: 100%; /* Ensures the Register button has the same width */
+            max-width: 400px; /* Optional: Set a maximum width for the button */
+        }
+
+        .register-container select {
+            width: 100%; /* Ensure the select dropdown has the same width */
+        }
+    </style>
+    <script>
+        function sendOTP() {
+            var mobile = document.getElementById("mobile").value;
+            if(mobile.length == 10) {
+                alert("OTP sent to " + mobile);
+            } else {
+                alert("Enter a valid 10-digit mobile number");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="register-container">
+        <select id="user-type" name="user-type" required>
+            <option value="" disabled selected>Sign up as</option>
+            <option value="owner">Owner</option>
+            <option value="driver">Driver</option>
+        </select>
+        <input type="text" id="name" name="name" required placeholder="Full Name">
+        <input type="text" id="mobile" name="mobile" required placeholder="Mobile Number">
+        <button type="button" class="otp-button" onclick="sendOTP()">Send OTP</button>
+        <input type="text" id="otp" name="otp" required placeholder="Enter OTP">
+        <input type="password" id="password" name="password" required placeholder="Password">
+        <button type="submit">Register</button>
+    </div>
+</body>
+</html>
