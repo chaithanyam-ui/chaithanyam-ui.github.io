@@ -23,6 +23,7 @@
             height: 100vh;
             flex-direction: column;
         }
+
         .login-container {
             background-color: white;
             border-radius: 10px;
@@ -31,18 +32,28 @@
             width: 100%;
             max-width: 400px;
             animation: fadeIn 2s ease-out;
+            margin-bottom: 20px;
         }
+
         h2 {
             font-family: 'Century Schoolbook', serif;
             font-size: 2em;
             color: #333;
         }
+
+        .top-section {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
         label {
             font-size: 1.1em;
             color: #555;
             margin-bottom: 5px;
             display: block;
         }
+
         input {
             width: 100%;
             padding: 10px;
@@ -51,6 +62,7 @@
             border-radius: 5px;
             border: 1px solid #ccc;
         }
+
         input[type="submit"] {
             background-color: #007BFF;
             color: white;
@@ -58,9 +70,25 @@
             border: none;
             transition: background-color 0.3s ease;
         }
+
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+
+        .home-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+
         .footer {
             font-size: 1em;
             color: #555;
@@ -81,6 +109,12 @@
 </head>
 <body>
 
+    <!-- Additional content at the top -->
+    <div class="top-section">
+        <h2>Welcome Back, Owner!</h2>
+    </div>
+
+    <!-- Login Box at the top -->
     <div class="login-container">
         <h2>Owner Login</h2>
         <form action="owner-dashboard.html" method="POST">
@@ -94,6 +128,10 @@
         </form>
     </div>
 
+    <!-- Home Button in the middle -->
+    <a href="index.html" class="home-button">Home</a>
+
+    <!-- Statement at the bottom -->
     <div class="footer">
         <p>Don't have an account? <a href="register.html">Sign up here</a>.</p>
     </div>
