@@ -30,7 +30,7 @@
             animation: fadeIn 2s ease-out;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Centering the content */
+            justify-content: center;
             align-items: center;
         }
 
@@ -40,9 +40,9 @@
             border-radius: 5px;
             border: 1px solid #ccc;
             margin: 5px;
-            width: 100%; /* Ensure the inputs take full width */
-            max-width: 400px; /* Optional: Restrict max width of inputs */
-            box-sizing: border-box; /* Ensures padding doesn't increase the size */
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
         }
 
         button {
@@ -65,12 +65,12 @@
         }
 
         .register-container button[type="submit"] {
-            width: 100%; /* Ensures the Register button has the same width */
-            max-width: 400px; /* Optional: Set a maximum width for the button */
+            width: 100%;
+            max-width: 400px;
         }
 
         .register-container select {
-            width: 100%; /* Ensure the select dropdown has the same width */
+            width: 100%;
         }
     </style>
     <script>
@@ -80,6 +80,28 @@
                 alert("OTP sent to " + mobile);
             } else {
                 alert("Enter a valid 10-digit mobile number");
+            }
+        }
+
+        function registerUser() {
+            var userType = document.getElementById("user-type").value;
+            var name = document.getElementById("name").value;
+            var mobile = document.getElementById("mobile").value;
+            var otp = document.getElementById("otp").value;
+            var password = document.getElementById("password").value;
+
+            if (userType === "" || name === "" || mobile === "" || otp === "" || password === "") {
+                alert("Please fill out all fields before registering.");
+                return;
+            }
+
+            alert("Registration Successful!");
+
+            // Redirect based on user type
+            if (userType === "owner") {
+                window.location.href = "owner-login.html";
+            } else if (userType === "driver") {
+                window.location.href = "driver-login.html";
             }
         }
     </script>
@@ -96,7 +118,7 @@
         <button type="button" class="otp-button" onclick="sendOTP()">Send OTP</button>
         <input type="text" id="otp" name="otp" required placeholder="Enter OTP">
         <input type="password" id="password" name="password" required placeholder="Password">
-        <button type="submit">Register</button>
+        <button type="submit" onclick="registerUser()">Register</button>
     </div>
 </body>
 </html>
