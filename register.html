@@ -27,6 +27,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 600px;
+            animation: fadeIn 2s ease-out;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -55,14 +56,6 @@
             background-color: #0056b3;
         }
 
-        .otp-button {
-            background-color: #28a745;
-        }
-
-        .otp-button:hover {
-            background-color: #218838;
-        }
-
         .register-container button[type="submit"] {
             width: 100%;
             max-width: 400px;
@@ -72,6 +65,28 @@
             width: 100%;
         }
     </style>
+    <script>
+        function registerUser() {
+            var userType = document.getElementById("user-type").value;
+            var name = document.getElementById("name").value;
+            var mobile = document.getElementById("mobile").value;
+            var password = document.getElementById("password").value;
+
+            if (userType === "" || name === "" || mobile === "" || password === "") {
+                alert("Please fill out all fields before registering.");
+                return;
+            }
+
+            alert("Registration Successful!");
+
+            // Redirect based on user type
+            if (userType === "owner") {
+                window.location.href = "owner-login.html";
+            } else if (userType === "driver") {
+                window.location.href = "driver-login.html";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="register-container">
@@ -82,65 +97,8 @@
         </select>
         <input type="text" id="name" name="name" required placeholder="Full Name">
         <input type="text" id="mobile" name="mobile" required placeholder="Mobile Number">
-        <button type="button" class="otp-button" onclick="sendOTP()">Send OTP</button>
-        <input type="text" id="otp" name="otp" required placeholder="Enter OTP">
         <input type="password" id="password" name="password" required placeholder="Password">
         <button type="submit" onclick="registerUser()">Register</button>
     </div>
-
-    <script>
-        async function sendOTP() {
-            const phone = document.getElementById("mobile").value;
-            if (phone.length !== 10) {
-                alert("Enter a valid 10-digit mobile number");
-                return;
-            }
-
-            const response = await fetch("http://localhost:3000/send-otp", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ phone: `+91${phone}` }) // Adjust country code if needed
-            });
-
-            const data = await response.json();
-            alert(data.message);
-        }
-
-        async function registerUser() {
-            const userType = document.getElementById("user-type").value;
-            const name = document.getElementById("name").value;
-            const phone = document.getElementById("mobile").value;
-            const otp = document.getElementById("otp").value;
-            const password = document.getElementById("password").value;
-
-            if (!userType || !name || !phone || !otp || !password) {
-                alert("Please fill out all fields before registering.");
-                return;
-            }
-
-            const response = await fetch("http://localhost:3000/verify-otp", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ phone: `+91${phone}`, otp })
-            });
-
-            const data = await response.json();
-            if (data.success) {
-                alert("OTP Verified! Registering...");
-
-                // Store session token
-                sessionStorage.setItem("sessionToken", data.sessionToken);
-
-                // Redirect based on user type
-                if (userType === "owner") {
-                    window.location.href = "owner-login.html";
-                } else if (userType === "driver") {
-                    window.location.href = "driver-login.html";
-                }
-            } else {
-                alert("Invalid OTP! Please try again.");
-            }
-        }
-    </script>
 </body>
 </html>
