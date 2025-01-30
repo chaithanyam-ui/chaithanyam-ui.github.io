@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Dashboard - Vehicle Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Century Gothic', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+        }
+
+        /* Left Sidebar */
+        .sidebar {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-right: 10px;
+        }
+
+        .sidebar button {
+            padding: 12px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #007BFF;
+            color: white;
+            margin-bottom: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .sidebar button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Top-right Profile Button */
+        .profile-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: #007BFF;
+            border-radius: 50%;
+            color: white;
+            border: none;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .profile-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Profile Dropdown Menu */
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 200px;
+            padding: 10px;
+            z-index: 100;
+        }
+
+        .profile-dropdown button {
+            background-color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .profile-dropdown button:hover {
+            background-color: #f4f4f9;
+        }
+
+        .header {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .content {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .reports {
+            margin-top: 20px;
+        }
+
+        .report-btn {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 1em;
+        }
+
+        .report-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .report-content {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .report-content h4 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Actions for adding vehicles, drivers, and assigning duties -->
+            <button onclick="addVehicle()">Add Vehicle</button>
+            <button onclick="addDriver()">Add Driver</button>
+            <button onclick="assignDuty()">Assign Duty</button>
+            <button onclick="unassignDuty()">Unassign Duty</button>
+
+            <!-- Reports Section: Button to toggle the reports view -->
+            <button class="report-btn" onclick="toggleReports()">Reports</button>
+            <div id="report-content" class="report-content">
+                <button class="report-btn" onclick="viewReport('vehicle')">Vehicle Report</button>
+                <button class="report-btn" onclick="viewReport('duty')">Duty Report</button>
+                <div id="report-details"></div>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content">
+            <div class="header">Welcome to Owner Profile</div>
+        </div>
+
+        <!-- Profile Button -->
+        <button class="profile-btn" onclick="toggleProfileDropdown()">
+            <i class="fas fa-user"></i>
+        </button>
+
+        <!-- Profile Dropdown Menu -->
+        <div class="profile-dropdown" id="profile-dropdown">
+            <button onclick="changeOwnerName()">Change Owner Name</button>
+            <button onclick="changePassword()">Change Password</button>
+            <button onclick="deleteVehicle()">Delete Vehicle</button>
+            <button onclick="deleteDriver()">Delete Driver</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        // Toggle the visibility of the profile dropdown
+        function toggleProfileDropdown() {
+            const dropdown = document.getElementById('profile-dropdown');
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        // Placeholder functions to simulate actions
+        function addVehicle() {
+            alert("Add Vehicle functionality goes here.");
+        }
+
+        function addDriver() {
+            alert("Add Driver functionality goes here.");
+        }
+
+        function assignDuty() {
+            alert("Assign Duty functionality goes here.");
+        }
+
+        function unassignDuty() {
+            alert("Unassign Duty functionality goes here.");
+        }
+
+        // Toggle visibility of the reports section
+        function toggleReports() {
+            const reportContent = document.getElementById('report-content');
+            reportContent.style.display = reportContent.style.display === "none" || reportContent.style.display === "" ? "block" : "none";
+        }
+
+        // Function to view reports based on type
+        function viewReport(reportType) {
+            const reportDetails = document.getElementById('report-details');
+            if (reportType === 'vehicle') {
+                reportDetails.innerHTML = "<h4>Vehicle Report</h4><p>Here's the vehicle report content...</p>";
+            } else if (reportType === 'duty') {
+                reportDetails.innerHTML = "<h4>Duty Report</h4><p>Here's the duty report content...</p>";
+            }
+        }
+
+        // Owner Profile options functions
+        function changeOwnerName() {
+            alert("Change Owner Name functionality goes here.");
+            // Implement functionality to allow the owner to change their name.
+        }
+
+        function changePassword() {
+            alert("Change Password functionality goes here.");
+            // Implement functionality to allow the owner to change their password.
+        }
+
+        function deleteVehicle() {
+            alert("Delete Vehicle functionality goes here.");
+            // Implement functionality to allow the owner to delete a vehicle.
+        }
+
+        function deleteDriver() {
+            alert("Delete Driver functionality goes here.");
+            // Implement functionality to allow the owner to delete a driver.
+        }
+
+        function logout() {
+            alert("Logging out...");
+            // Implement logout functionality (e.g., clear session, redirect to login page).
+        }
+    </script>
+</body>
+</html>
